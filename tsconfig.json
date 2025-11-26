@@ -13,6 +13,13 @@
     "declaration": false,
     "outDir": "dist-types"
   },
-  "include": ["src", "components", "index.tsx", "App.tsx"],
-  "exclude": ["node_modules", "dist", "dist-types", "**/*.d.ts", "vite.config.ts", "vite.config.*.ts"]
+  "include": ["."],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist-types",
+    "**/*.d.ts",
+    "vite.config.ts",
+    "vite.config.*.ts"
+  ]
 }
