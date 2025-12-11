@@ -29,11 +29,11 @@ export const WeighingScale: React.FC<WeighingScaleProps> = ({
   const rotation = Math.max(-20, Math.min(20, diff * 15)); // Multiplier to make it sensitive
 
   return (
-    <div className="relative w-full max-w-[600px] h-[380px] md:h-[420px] flex flex-col items-center justify-end select-none mt-4 md:mt-12 scale-95 md:scale-100 pb-10">
+    <div className="relative w-full max-w-[600px] h-[380px] md:h-[450px] flex flex-col items-center justify-end select-none mt-4 md:mt-8 scale-95 md:scale-100 pb-2">
       
       {/* --- CENTRAL STAND (Solid Connection) --- */}
-      {/* This creates the solid pole from the pivot point down into the base */}
-      <div className="absolute top-[28%] bottom-20 left-1/2 -translate-x-1/2 w-8 md:w-10 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-800 border-x-2 border-slate-900 z-10 shadow-inner"></div>
+      {/* The pole now goes deep into the base (bottom-24) to ensure no gap */}
+      <div className="absolute top-[28%] bottom-24 left-1/2 -translate-x-1/2 w-8 md:w-10 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-800 border-x-2 border-slate-900 z-10 shadow-inner"></div>
 
       {/* --- The Beam Mechanism --- */}
       <div className="absolute top-[28%] w-[90%] h-4 z-20 transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
@@ -71,15 +71,15 @@ export const WeighingScale: React.FC<WeighingScaleProps> = ({
                          <div className="absolute -top-16 w-1 h-16 bg-gray-400 right-0 origin-bottom -rotate-[25deg]"></div>
 
                          {/* Items in Bowl */}
-                         <div className="absolute bottom-2 w-[80%] flex flex-wrap-reverse justify-center items-end content-end -space-x-3 px-2 pointer-events-none">
+                         <div className="absolute bottom-2 w-[90%] flex flex-wrap-reverse justify-center items-end content-end -space-x-4 px-1 pointer-events-none">
                             {leftPanItems.map((item, index) => (
                                 <div 
                                     key={index} 
-                                    className="pointer-events-auto cursor-pointer transition-transform hover:scale-110 active:scale-95 animate-bounce-short drop-shadow-lg -mb-2"
+                                    className="pointer-events-auto cursor-pointer transition-transform hover:scale-110 active:scale-95 animate-bounce-short drop-shadow-lg -mb-3"
                                     onClick={() => onRemoveItem(index, 'left')}
                                     style={{ zIndex: index }}
                                 >
-                                    <item.Icon className="w-10 h-10 md:w-14 md:h-14" />
+                                    <item.Icon className="w-12 h-12 md:w-14 md:h-14" />
                                 </div>
                             ))}
                             {leftPanItems.length === 0 && (
@@ -104,11 +104,11 @@ export const WeighingScale: React.FC<WeighingScaleProps> = ({
                         className="relative w-32 md:w-40 h-4 bg-gray-800 rounded-sm shadow-[0_10px_20px_rgba(0,0,0,0.5)] border-b-4 border-gray-900 flex justify-center items-end z-10"
                      >
                         {/* Items on Plate */}
-                        <div className="absolute bottom-full mb-0 w-full flex flex-wrap-reverse justify-center items-end -space-x-3">
+                        <div className="absolute bottom-full mb-0 w-full flex flex-wrap-reverse justify-center items-end -space-x-4">
                              {rightPanItems.map((item, index) => (
                                 <div 
                                     key={index} 
-                                    className="cursor-pointer transition-transform hover:scale-110 active:scale-95 drop-shadow-2xl z-10 -mb-1"
+                                    className="cursor-pointer transition-transform hover:scale-110 active:scale-95 drop-shadow-2xl z-10 -mb-2"
                                     onClick={() => onRemoveItem(index, 'right')}
                                 >
                                     <item.Icon className="w-12 h-12 md:w-16 md:h-16" />
@@ -124,8 +124,8 @@ export const WeighingScale: React.FC<WeighingScaleProps> = ({
       </div>
 
       {/* --- The Red Base --- */}
-      {/* Added mb-6 to lift base up, making room for text below */}
-      <div className="relative z-20 w-48 md:w-72 mb-2">
+      {/* Added mb-14 to lift base up significantly, clearing space for the text below */}
+      <div className="relative z-20 w-48 md:w-72 mb-14">
           {/* Main Body */}
           <div className="w-full h-24 md:h-32 bg-gradient-to-r from-red-900 via-red-700 to-red-900 rounded-t-3xl rounded-b-lg shadow-2xl relative border-t-2 border-red-500 flex items-center justify-center">
                
@@ -140,14 +140,16 @@ export const WeighingScale: React.FC<WeighingScaleProps> = ({
           </div>
       </div>
       
-      {/* Readings - Positioned at the bottom corners, completely separate from the base */}
+      {/* Readings - Positioned at the very bottom corners, separate from the base */}
       <div className="absolute bottom-0 w-full flex justify-between px-0 md:px-0">
-         <div className="bg-white/80 px-3 py-1 rounded-r-lg backdrop-blur-sm shadow-md border-y border-r border-white/50 text-lg md:text-2xl font-bold font-mono text-slate-900 tracking-tight z-30">
-            Fruits: {(leftWeight * 1000).toFixed(0)}g
+         <div className="bg-white/80 px-4 py-2 rounded-r-xl backdrop-blur-sm shadow-md border-y border-r border-white/50 text-2xl md:text-3xl font-extrabold font-mono text-slate-900 tracking-tight z-30 min-w-[140px] text-center">
+            {(leftWeight * 1000).toFixed(0)}g
+            <div className="text-xs text-slate-500 font-sans font-bold uppercase tracking-wider">Fruits</div>
          </div>
 
-         <div className="bg-white/80 px-3 py-1 rounded-l-lg backdrop-blur-sm shadow-md border-y border-l border-white/50 text-lg md:text-2xl font-bold font-mono text-slate-900 tracking-tight z-30">
-            Weights: {(rightWeight * 1000).toFixed(0)}g
+         <div className="bg-white/80 px-4 py-2 rounded-l-xl backdrop-blur-sm shadow-md border-y border-l border-white/50 text-2xl md:text-3xl font-extrabold font-mono text-slate-900 tracking-tight z-30 min-w-[140px] text-center">
+            {(rightWeight * 1000).toFixed(0)}g
+            <div className="text-xs text-slate-500 font-sans font-bold uppercase tracking-wider">Weights</div>
          </div>
       </div>
 
