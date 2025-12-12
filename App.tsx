@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { WeighingScale } from './components/WeighingScale';
-import { FruitBasket } from './components/FruitBasket'; // This handles both now
+import { FruitBasket } from './components/FruitBasket'; 
 import { Item } from './types';
-import { FRUITS, WEIGHTS, dropAudio, successAudio, resetAudio, clickAudio } from './constants';
-import { Confetti } from './components/Icons';
+import { FRUITS, WEIGHTS } from './constants';
+import { dropAudio, successAudio, resetAudio, clickAudio } from './audio';
+import { Confetti } from './components/Confetti';
 
 const App: React.FC = () => {
   const [leftPanItems, setLeftPanItems] = useState<Item[]>([]); // Fruits
@@ -52,9 +53,6 @@ const App: React.FC = () => {
     const itemType = event.dataTransfer.getData('itemType'); // 'fruit' or 'weight'
     
     // Logic: Fruits prefer Left (Bowl), Weights prefer Right (Plate)
-    // But we strictly enforce it based on the UI design (Bowl is for goods, Plate for weights)
-    // If user drops fruit on right, we can either allow it or bounce it back.
-    // For simplicity and realism: Fruits -> Left, Weights -> Right.
     
     let itemToAdd: Item | undefined;
     if (itemType === 'fruit') {
