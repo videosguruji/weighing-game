@@ -25,7 +25,6 @@ export const OrangeIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
       <circle cx="12" cy="12" r="8" fill="#FF9800"/>
       <path d="M13.5 3C13.09 4.3 12.5 5 12 5C11.5 5 10.91 4.3 10.5 3H13.5Z" fill="#4CAF50"/>
       <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" fill="#FFA726"/>
-      {/* Texture dots */}
       <circle cx="10" cy="9" r="0.5" fill="#F57C00" opacity="0.6"/>
       <circle cx="14" cy="10" r="0.5" fill="#F57C00" opacity="0.6"/>
       <circle cx="12" cy="14" r="0.5" fill="#F57C00" opacity="0.6"/>
@@ -95,31 +94,55 @@ export const WatermelonIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) =
   </svg>
 );
 
-const HexagonBase: React.FC<{ size: number, color?: string, label: string, subLabel: string }> = ({ size, color="#4a4a4a", label, subLabel }) => (
-    <svg viewBox="0 0 100 100" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 5 L93.3 30 L93.3 80 L50 105 L6.7 80 L6.7 30 Z" fill={color} stroke="#2a2a2a" strokeWidth="2"/>
+// Updated HexagonBase to be part of the SVG structure directly
+const HexagonPath = () => (
+    <>
+        <path d="M50 5 L93.3 30 L93.3 80 L50 105 L6.7 80 L6.7 30 Z" fill="#4a4a4a" stroke="#2a2a2a" strokeWidth="2"/>
         <path d="M50 15 L83 34 L83 76 L50 95 L17 76 L17 34 Z" fill="#3a3a3a" stroke="#222" strokeWidth="1"/>
-        <text x="50" y="55" textAnchor="middle" fill="#aaa" fontSize={size > 80 ? "24" : "20"} fontFamily="serif" fontWeight="bold">{label}</text>
-        <text x="50" y="75" textAnchor="middle" fill="#aaa" fontSize={size > 80 ? "14" : "12"} fontFamily="serif">{subLabel}</text>
         <path d="M20 35 L45 20 L55 20 L20 40 Z" fill="white" opacity="0.1"/>
-    </svg>
+    </>
+);
+
+const WeightText = ({ label, subLabel }: { label: string, subLabel: string }) => (
+    <>
+        <text x="50" y="55" textAnchor="middle" fill="#aaa" fontSize="24" fontFamily="serif" fontWeight="bold">{label}</text>
+        <text x="50" y="75" textAnchor="middle" fill="#aaa" fontSize="14" fontFamily="serif">{subLabel}</text>
+    </>
 );
 
 export const Weight50gIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <div className={`w-10 h-10 ${props.className}`}><HexagonBase size={40} label="50" subLabel="g" /></div>
+    <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <HexagonPath />
+        <WeightText label="50" subLabel="g" />
+    </svg>
 );
 export const Weight100gIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <div className={`w-12 h-12 ${props.className}`}><HexagonBase size={50} label="100" subLabel="g" /></div>
+    <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <HexagonPath />
+        <WeightText label="100" subLabel="g" />
+    </svg>
 );
 export const Weight200gIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <div className={`w-14 h-14 ${props.className}`}><HexagonBase size={60} label="200" subLabel="g" /></div>
+    <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <HexagonPath />
+        <WeightText label="200" subLabel="g" />
+    </svg>
 );
 export const Weight500gIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <div className={`w-16 h-16 ${props.className}`}><HexagonBase size={70} label="500" subLabel="g" /></div>
+    <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <HexagonPath />
+        <WeightText label="500" subLabel="g" />
+    </svg>
 );
 export const Weight1kgIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <div className={`w-20 h-20 ${props.className}`}><HexagonBase size={80} label="1" subLabel="kg" /></div>
+    <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <HexagonPath />
+        <WeightText label="1" subLabel="kg" />
+    </svg>
 );
 export const Weight2kgIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <div className={`w-24 h-24 ${props.className}`}><HexagonBase size={90} label="2" subLabel="kg" /></div>
+    <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <HexagonPath />
+        <WeightText label="2" subLabel="kg" />
+    </svg>
 );
