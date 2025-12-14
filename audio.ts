@@ -29,4 +29,3 @@ export const dropAudio = createAudio(DROP_SOUND_BASE64);
 export const successAudio = createAudio(SUCCESS_SOUND_BASE64);
 export const resetAudio = createAudio(RESET_SOUND_BASE64);
 export const clickAudio = createAudio(CLICK_SOUND_BASE64, 0.5);
-    
